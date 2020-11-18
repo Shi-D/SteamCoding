@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="../resources/plugins/font-awesome.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google" value="notranslate">
+    <link rel="shortcut icon" href="static/favicon.ico">
+    <style type="text/css">
+        html,body{
+            height: 100%;
+        }
+
+    </style>
+    <title>Scratch 3.0 GUI: Player Example</title>
+
+</head>
+<body style="overflow-y:hidden">
+<script type="text/javascript" src="lib.min.js"></script>
+<script type="text/javascript">
+    window.projectUrl=localStorage.getItem("productionUrl");
+</script>
+<script type="text/javascript" src="player.js"></script>
+</body>
+
+<script type="text/javascript">
+/*    console.log(localStorage.getItem('isClick') === 'true');
+    if(localStorage.getItem('isClick') === 'true'){
+        let befull = function (){
+            let a = document.getElementsByClassName("box_box_tWy-0");
+            console.log(a);
+            let i = 0 ;
+            for(i = 0 ; i<a.length;i++){
+                if(a[i].className === "box_box_tWy-0" )
+                    a[i].style.height='100%';
+            }
+        };
+
+        let element = document.getElementsByClassName("player_stage-only_3sowo box_box_tWy-0")[0].getElementsByTagName("button");
+        element[0].addEventListener("click",function(){setTimeout(befull,1000);});
+        localStorage.removeItem("isClick");
+        document.getElementsByTagName("button")[0].click();
+    }
+    localStorage.removeItem("isClick");*/
+    document.getElementsByClassName('button_outlined-button_2f510 stage-header_stage-button_4qxON')[0].click();
+    document.getElementsByClassName('button_outlined-button_2f510 stage-header_stage-button_4qxON')[0].style.display = "none";
+    document.getElementsByClassName('stage_stage_DTWo5')[0].style.border.radius = "0rem";
+    document.getElementsByClassName('stage_stage-overlay-content_1B1VS')[0].style.border = "unset";
+
+</script>
+
+
+
+</html>

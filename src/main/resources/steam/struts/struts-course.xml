@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="course" extends="default-package" namespace="/course">
+
+		<action name="searchAllInfoCourses" class="com.steam.action.coursemanagement.CourseAction"
+			method="searchAllInfoCourses">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryAllInfoCoursesByCourseName" class="com.steam.action.coursemanagement.CourseAction"
+			method="queryAllInfoCoursesByCourseName">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<!-- 添加课程 -->
+		<action name="uploadCourse" class="com.steam.action.coursemanagement.CourseAction"
+			method="uploadCourse">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 查看课程内容 -->
+		<action name="getCourseInfo" class="com.steam.action.coursemanagement.CourseAction"
+			method="getCourseInfo">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="updateCourseInfo" class="com.steam.action.coursemanagement.CourseAction"
+			method="updateCourseInfo">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 发布精品课程课程 -->
+		<action name="publishCourse" class="com.steam.action.coursemanagement.CourseAction"
+			method="publishCourse">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 撤回精品课程 -->
+		<action name="recallCourse" class="com.steam.action.coursemanagement.CourseAction"
+			method="recallCourse">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 删除课程 -->
+		<action name="deleteCourse" class="com.steam.action.coursemanagement.CourseAction"
+			method="deleteCourse">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="updateChapterForCourse" class="com.steam.action.coursemanagement.CourseAction"
+			method="updateChapterForCourse">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<!-- 新建章节 -->
+		<action name="addNewChapter" class="com.steam.action.coursemanagement.CourseAction"
+			method="addNewChapter">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryChapterInCourse" class="com.steam.action.coursemanagement.CourseAction"
+			method="queryChapterInCourse">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<!-- 删除章节 -->
+		<action name="deleteChapterByChapterId" class="com.steam.action.coursemanagement.CourseAction"
+			method="deleteChapterByChapterId">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<!-- 查询学生的所有课程 -->
+		<action name="getAllCoursesByStundetId" class="com.steam.action.coursemanagement.CourseAction"
+			method="getAllCoursesByStundetId">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<!-- 上传视频到视频库 -->
+		<action name="uploadVideoInStore" class="com.steam.action.coursemanagement.CourseAction"
+			method="uploadVideoInStore">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10485760</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="queryVideoLink" class="com.steam.action.coursemanagement.CourseAction"
+			method="queryVideoLink">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<!-- 返回所有视频 -->
+		<action name="queryAllVideo" class="com.steam.action.coursemanagement.CourseAction"
+			method="queryAllVideo">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 删除视频-->
+		<action name="deleteVideo" class="com.steam.action.coursemanagement.CourseAction"
+			method="deleteVideo">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="uploadifyTest_*"
+			class="com.steam.action.uploadscratchfile.UploadScratchVedioAction"
+			method="{1}">
+			<result name="doUpload" type="json">
+				<param name="includeProperties">responseInfo</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+			<result name="uploadsize" type="json">
+				<param name="includeProperties">uploadSize</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+
+	</package>
+</struts>

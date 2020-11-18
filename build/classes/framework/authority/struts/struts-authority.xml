@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="authority" extends="default-package" namespace="/authority">
+		<!--获取用户 -->
+		<action name="findByRole" class="com.framework.authority.action.AuthorityAction" method="findByRole">
+			<result name="result>json" type="json">
+				<param name="root">menuNode</param>
+			</result>
+		</action>
+	</package>
+</struts>

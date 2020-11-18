@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="index" extends="default-package" namespace="/index">
+		<action name="countAllWorks" class="com.steam.action.index.IndexInfoAction"
+			method="countAllWorks">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryLastestWorksByrecommented" class="com.steam.action.index.IndexInfoAction"
+			method="queryLastestWorksByrecommented">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="getCourseInfo" class="com.steam.action.index.CourseLearnAction"
+			method="getCourseInfo">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+
+		<!-- 学生查看课程进行学习 -->
+		<action name="queryChatperInCourse" class="com.steam.action.index.CourseLearnAction"
+			method="queryChatperInCourse">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<action name="queryChapterInPublishedCourse" class="com.steam.action.index.CourseLearnAction"
+			method="queryChapterInPublishedCourse">
+			<result name="result>json" type="json">
+				<param name="root">chapters</param>
+			</result>
+		</action>
+		
+		<action name="getChapterInfo" class="com.steam.action.index.CourseLearnAction"
+			method="getChapterInfo">
+			<result name="result>json" type="json">
+				<param name="root">chapter</param>
+			</result>
+		</action>
+		
+		<action name="queryAllIsPublishedCourse" class="com.steam.action.index.CourseLearnAction"
+			method="queryAllIsPublishedCourse">
+			<result name="result>json" type="json">
+				<param name="root">publishedCourses</param>
+			</result>
+		</action>
+		
+		<action name="queryHottestWorks" class="com.steam.action.index.IndexInfoAction"
+			method="queryHottestWorks">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryLastestWorksByPublished" class="com.steam.action.index.IndexInfoAction"
+			method="queryLastestWorksByPublished">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryLikestWorks" class="com.steam.action.index.IndexInfoAction"
+			method="queryLikestWorks">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryPageviewsWorks" class="com.steam.action.index.IndexInfoAction"
+			method="queryPageviewsWorks">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryPopularWorks" class="com.steam.action.index.WorkShowAction"
+			method="queryPopularWorks">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="showWorkDetail" class="com.steam.action.index.WorkShowAction"
+			method="showWorkDetail">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="clickWorkLike" class="com.steam.action.index.WorkShowAction"
+			method="clickWorkLike">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="dropWorkLike" class="com.steam.action.index.WorkShowAction"
+			method="dropWorkLike">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryComment" class="com.steam.action.index.WorkShowAction"
+			method="queryComment">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="addComment" class="com.steam.action.index.WorkShowAction"
+			method="addComment">
+			<result name="result>json" type="json">
+				<param name="root">workComment</param>
+			</result>
+		</action>
+
+		<action name="deleteComment" class="com.steam.action.index.WorkShowAction"
+			method="deleteComment">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="clickLikeComment" class="com.steam.action.index.WorkShowAction"
+			method="clickLikeComment">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="dropLikeComment" class="com.steam.action.index.WorkShowAction"
+			method="dropLikeComment">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+	</package>
+</struts> 

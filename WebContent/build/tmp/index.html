@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google" value="notranslate">
+  <link rel="shortcut icon" href="static/favicon.ico">
+  <link rel="stylesheet" href="../../resources/plugins/bootstrap.min.css">
+  <link rel="stylesheet" href="../../resources/plugins/font-awesome.css">
+  <link rel="stylesheet" href="../../resources/plugins/slideVerify/slideVerify.css">   
+  <title>Scratch 3.0 GUI</title>  
+  <style>
+  #indexCard{left:100px;visibility:hidden;position:fixed;z-index:100;}
+  #cancelToVerify{color:#aaaaaa;font-size:25px;display:relative;right:0px;}
+  </style>
+</head>
+
+<body>
+  <script src="../../resources/plugins/jquery.min.js"></script>
+  <script src="../../resources/plugins/bootstrap.min.js"></script>
+  <script>
+    // https://stackoverflow.com/questions/26783586/canvas-todataurl-returns-blank-image-only-in-firefox/26790802#26790802
+    HTMLCanvasElement.prototype.getContext = function (origFn) {
+      return function (type, attributes) {
+        if (type === 'webgl') {
+          attributes = Object.assign({}, attributes, {
+            preserveDrawingBuffer: true,
+          });
+        }
+        return origFn.call(this, type, attributes);
+      };
+    }(HTMLCanvasElement.prototype.getContext);
+  </script>
+  <div aria-hidden="true" class="modal fade" id="modal-loginPrompt" data-backdrop="static">
+	<div class="modal-dialog ">
+		<div class="modal-content">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button></div>
+			<div class="modal-body">
+			
+				<div class="card" id="indexCard" style="width:350px">
+					<div class="card-body">
+						<span id="cancelToVerify"><i class="fa fa-times-circle-o"></i></span>
+						<br>
+				   		<div class="container" id="verifyContainer">
+							<div id="captcha" style="position:relative"></div>
+							<div id="msg"></div>
+						</div>
+				 	</div>
+				</div>
+				
+				<h1 class="h4 text-center mb-5 mt-3" >请先登录</h1>
+					<div class="login">
+						<div class="form-group">
+							<label for="inputEmail">请输入用户名</label>
+							<input type="text" id="inputEmail" class="form-control form-control-login" name="j_username" placeholder="请输入用户名" />
+						</div>
+						<div class="form-group">
+							<label for="inputPassword">请输入密码</label>
+							<input type="password" id="inputPassword" name="j_password" placeholder="请输入密码" class="form-control form-control-login" />
+						</div>
+						<div style="height: 25px;" class="errorMessage">
+							<p style="text-align:left !important;color:rgb(255,0,0);display:none;" class="error_message">用户名或密码错误</p>
+						</div>
+						<a href="javascript:void(0);" class="mt-5 mb-5 btn btn-lg btn-primary btn-block" id="loginButton">登录</a>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+function getRandomNumberByRange(start, end) {
+    return Math.round(Math.random() * (end - start) + start)
+}
+function getRandomImg() {
+    return "../../resources/plugins/slideVerify/img/" + getRandomNumberByRange(0, 6) + ".png"
+}
+</script>
+<script type="text/javascript"  src="../../common/common.js"></script>
+<script src="../../resources/plugins/slideVerify/slideVerify.js"></script>
+<script>
+jigsaw.init(document.getElementById('captcha'), function () {});
+</script>
+<script type="text/javascript" src="lib.min.js"></script>
+<script type="text/javascript" src="chunks/gui.js"></script>
+<script>
+let tryCount = 1;
+
+console.log(screen.availWidth/2,screen.availHeight/2);
+$("#indexCard").css("top", (screen.availHeight/2-150)+"px");
+$("#indexCard").css("left", (screen.availWidth/2-100)+"px");
+
+$("#cancelToVerify").click(function(){
+	$("#indexCard").css("visibility","hidden");
+})
+
+$("input").click(function(){
+	$("#cancelToVerify").click();
+})
+
+//登录事件
+loginFunc("#loginButton");
+</script>
+</body>
+
+</html>
+

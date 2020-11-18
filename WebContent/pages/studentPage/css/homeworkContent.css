@@ -1,0 +1,54 @@
+
+.homeworkRequest{
+    width: 70%;
+    margin-left: 15%;
+}
+
+.homeworkRequest h2{
+    margin-bottom: 2%;
+}
+
+.homeworkRequest>p{
+
+}
+
+.homeworkContent>input{
+    margin-bottom: 2%;
+}
+
+.homeworkRequest p .timeStyle{
+    color: orangered;
+}
+
+hr{
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.homeworkContent{
+    width: 70%;
+    margin-left: 15%;
+}
+
+.hasSubmittedContent{
+    width: 70%;
+    margin-left: 15%;
+}
+
+
+#submit{
+    margin-top: 1%;
+    width: 85px;
+    float: right;
+    margin-right: 1%;
+}
+
+.homeworkRequest a{
+    color: black;
+}
+
+.font-weight-homework{
+	font-weight:600;
+}

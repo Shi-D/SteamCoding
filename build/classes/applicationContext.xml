@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:security="http://www.springframework.org/schema/security" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/aop 
+          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+          http://www.springframework.org/schema/tx 
+          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+          http://www.springframework.org/schema/context 
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+
+	<!-- 注解配置 -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.framework" />
+	<context:component-scan base-package="com.steam" />
+	
+	
+	<!--配置属性加载类 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${hibernateMSSQL.connection.driver_class}" />
+		<property name="url" value="${hibernateMSSQL.connection.url}" />
+		<property name="username" value="${hibernateMSSQL.connection.username}" />
+		<property name="password" value="${hibernateMSSQL.connection.password}" />
+		<property name="maxActive" value="100" />
+		<property name="maxWait" value="1000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="defaultAutoCommit" value="true" />
+	</bean>
+
+	<!-- 配置SessionFactory，由Spring管理Hibernate -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=${hibernateMSSQL.dialect}
+				hibernate.query.substitutions=true 'Y', false 'N'
+				hibernate.cache.use_second_level_cache=false
+				hibernate.show_sql=true
+				hibernate.format_sql=false
+				hibernate.hbm2ddl.auto=update
+				hibernate.jdbc.batch_size=50
+<!-- 				hibernate.cache.use_second_level_cache=true -->
+<!-- 				hibernate.cache.use_query_cache=true -->
+<!-- 				hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider -->
+			</value>
+		</property>
+
+		<property name="packagesToScan">
+			<list>
+				<value>com.*.**.entityview</value>
+				<value>com.*.**.entity</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+<!-- 		<property name="cacheQueries"> -->
+<!-- 			<value>true</value> -->
+<!-- 		</property> -->
+	</bean>
+
+	<bean name="baseHibernateDao" class="com.framework.system.common.base.dao.impl.BaseHibernateDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+
+	<!-- 配置事务的传播特性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="generate*" propagation="REQUIRED" />
+			<tx:method name="manualGenerate*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="send*" propagation="REQUIRED" />
+			<tx:method name="init*" propagation="REQUIRED" />
+			<tx:method name="login*" propagation="REQUIRED" />
+			<tx:method name="logout*" propagation="REQUIRED" />
+			<tx:method name="write*" propagation="REQUIRED" />
+			<tx:method name="check*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置事务切面 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="esCut" expression="execution(* com.energyservice.service.**.*.*(..))" />
+		<aop:pointcut id="frameworkCut" expression="execution(* com.framework.**.service.*.*(..))" />
+		<aop:pointcut id="frameworkImplCut" expression="execution(* com.framework.system.common.base.service.impl.*.*(..))" />
+		<aop:pointcut id="frameworkSystemCut" expression="execution(* com.framework.system.service.**.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="esCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="frameworkCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="frameworkImplCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="frameworkSystemCut" />
+	</aop:config>
+
+	<import resource="classpath*:/framework/**/spring/*.xml" />
+</beans>

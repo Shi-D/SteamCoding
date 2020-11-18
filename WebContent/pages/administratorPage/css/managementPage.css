@@ -1,0 +1,220 @@
+.sider-menu {
+  width: 256px;
+  min-width: 256px;
+  min-height: 100vh;
+  color: rgba(255, 255, 255, 0.65);
+  background: #001529;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  z-index: 10;
+}
+.sider-menu ul.management-menu {
+  list-style: none;
+  margin: 0;
+  padding: 24px 0 0 0;
+}
+.sider-menu li {
+  line-height: 42px;
+  padding-left: 24px;
+}
+.sider-menu li i.fa {
+  margin: 5px;
+}
+.sider-menu li.active {
+  color: #fff;
+  background-color: #1890ff;
+}
+.sider-menu li.active a {
+  color: #fff;
+}
+.sider-menu li:hover {
+  color: #fff;
+  cursor: pointer;
+}
+.sider-menu li:hover a {
+  color: #fff;
+}
+.sider-menu-header {
+  color: #fff;
+  background-color: #002f5c;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sider-menu-header img.logo {
+  height: 100%;
+  width: 100%;
+}
+.main {
+  display: flex;
+}
+.layout {
+  width: 100%;
+}
+.layout-header {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+.layout-header .sider-menu-trigger {
+  padding: 24px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+}
+.layout-header .sider-menu-trigger:hover {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+.layout-header span.user-info {
+  color: rgba(0, 0, 0, 0.65);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+}
+.layout-header span.user-info:hover {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+.layout-header img.user-avatar {
+  height: 24px;
+  border-radius: 12px;
+  margin-right: 5px;
+}
+.layout-header span.user-name {
+  font-size: 14px;
+}
+a {
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+.layout-content-main {
+  background-color: #f0f2f5;
+  padding: 24px 24px 24px;
+  min-height: 93vh;
+}
+.table-part {
+  background-color: #fff;
+  padding: 24px;
+  min-height: 88vh;
+}
+.main button {
+  cursor: pointer;
+  height: 36px !important;
+  padding: 0 15px !important;
+}
+.main button.disabled {
+  cursor: not-allowed;
+}
+.main button.btn-outline-secondary:hover:not(.disabled) {
+  background: #fff;
+  border-color: #1890ff;
+  color: #1890ff;
+}
+.main input {
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  color: rgba(0, 0, 0, 0.65);
+  padding: 4px 12px;
+}
+.table-operate {
+  margin-bottom: 24px;
+}
+.table-fliter {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.table-fliter > :first-child {
+  display: flex;
+  align-items: center;
+}
+.table-fliter > :first-child > :not(:first-child) {
+  margin: 0 12px;
+}
+.table-fliter > :first-child > :first-child {
+  margin-right: 12px;
+}
+.table-fliter label {
+  margin: 0;
+  align-items: center;
+}
+.table-context {
+  margin-bottom: 24px;
+}
+.table-context table {
+  width: 100%;
+  table-layout: fixed;
+}
+.table-context tbody tr :nth-child(1),
+.table-context tbody tr :nth-child(2) {
+  width: 36px;
+}
+.table-context tr {
+  height: 36px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.gutter {
+  width: 6px;
+  padding: 0;
+}
+.tablet-context-header tr {
+  background-color: #fafafa;
+}
+.table-context-body {
+  height: 62vh;
+  overflow-y: scroll;
+}
+.table-context-body::-webkit-scrollbar {
+  width: 6px;
+}
+.table-context-body::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #d4d4d4;
+}
+.table-context-body tr:hover {
+  background-color: #e6f7ff;
+}
+.table-footer {
+  min-width: 1020px;
+  display: flex;
+  justify-content: space-between;
+}
+.table-footer button {
+  padding: 0 !important;
+  height: 32px !important;
+  width: 32px;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+}
+.table-footer button:hover:not(.disabled) {
+  background: #fff;
+  border-color: #1890ff;
+  color: #1890ff;
+}
+.table-footer input {
+  width: 72px;
+}
+.modal .table-body {
+  height: 240px;
+  overflow-y: scroll;
+}
+.modal .table-body::-webkit-scrollbar {
+  width: 6px;
+}
+.modal .table-body::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #d4d4d4;
+}
+
+#drapdown-menu{
+  overflow-y: scroll;
+  height: 300px;
+}

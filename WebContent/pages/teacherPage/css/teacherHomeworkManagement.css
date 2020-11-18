@@ -1,0 +1,111 @@
+#table-body tr th{
+    font-weight: normal;
+}
+
+.starColor{
+    font-size: 20px;
+    color: red;
+}
+
+.modal-header p{
+    font-size: 26px;
+    font-weight: bold;
+    margin: unset;
+}
+.classMenuHide{
+    display: none;
+    padding-bottom: 0px;
+    width: 250px;
+    position: fixed;
+    left: 110px;
+    top: 440px;
+    background-color: #f8f8ff;
+    border-radius: 5px;
+}
+
+.classMenuShow{
+    display: block;
+    padding-bottom: 0px;
+    width: 250px;
+    position: fixed;
+    left: 110px;
+    top: 440px;
+    background-color: #f8f8ff;
+    border-radius: 5px;
+}
+
+.classMenu ul{
+    padding: unset;
+    margin: unset;
+}
+
+.classMenu ul ol{
+    border: 1px solid #EEEED1;
+    border-radius: 3px;
+    padding-left: 5%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.classMenu input{
+    width: 30px;
+    cursor: pointer;
+}
+
+/* #previousHomework{
+	word-wrap: break-word;
+	word-break: break-all;
+	overflow: hidden;
+} */
+
+
+.downloadStyle{
+	color: black;
+}
+
+.form-control{
+	width:auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

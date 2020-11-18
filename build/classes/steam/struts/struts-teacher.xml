@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="teacher" extends="default-package" namespace="/teacher">
+		<action name="queryTeachersByTeacherName"
+			class="com.steam.action.teachermanagement.TeacherInfoAction" method="queryTeachersByTeacherName">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+	
+		<action name="addTeacher"
+			class="com.steam.action.teachermanagement.TeacherInfoAction" method="addTeacher">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<action name="deleteTeacher"
+			class="com.steam.action.teachermanagement.TeacherInfoAction" method="deleteTeacher">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="exportExcel"
+			class="com.steam.action.teachermanagement.TeacherInfoAction" method="exportExcel">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="downloadTemplate"
+			class="com.steam.action.teachermanagement.TeacherInfoAction" method="downloadTemplate">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="teacherImport"
+			class="com.steam.action.teachermanagement.TeacherInfoAction" method="importExcelForAddTeachers">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="resetPWD"
+			class="com.steam.action.teachermanagement.TeacherInfoAction" method="resetPWD">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

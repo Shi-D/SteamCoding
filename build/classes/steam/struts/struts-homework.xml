@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="homework" extends="default-package" namespace="/homework">
+		<action name="queryHomework"
+			class="com.steam.action.homeworkmanagement.HomeworkInfoAction"
+			method="queryHomework">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="addHomework"
+			class="com.steam.action.homeworkmanagement.HomeworkInfoAction"
+			method="addHomework">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryClassesByUserId"
+			class="com.steam.action.homeworkmanagement.HomeworkInfoAction"
+			method="queryClassesByUserId">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="deleteHomework"
+			class="com.steam.action.homeworkmanagement.HomeworkInfoAction"
+			method="deleteHomework">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="querySubmitedHomework"
+			class="com.steam.action.homeworkmanagement.HomeworkInfoAction"
+			method="querySubmitedHomework">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="evaluateSubmitedHomework"
+			class="com.steam.action.homeworkmanagement.HomeworkInfoAction"
+			method="evaluateSubmitedHomework">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="submitHomework"
+			class="com.steam.action.homeworkmanagement.HomeworkInfoAction"
+			method="submitHomework">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="getDetailHomework"
+			class="com.steam.action.homeworkmanagement.HomeworkInfoAction"
+			method="getDetailHomework">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryCoursework"
+			class="com.steam.action.homeworkmanagement.HomeworkInfoAction"
+			method="queryCoursework">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="updateHomework"
+			class="com.steam.action.homeworkmanagement.HomeworkInfoAction"
+			method="updateHomework">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+	</package>
+</struts> 

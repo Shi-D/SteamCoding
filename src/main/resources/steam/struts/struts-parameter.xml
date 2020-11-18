@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="parameter" extends="default-package" namespace="/parameter">
+	
+		<!-- 查询参数 -->
+		<action name="queryParameter" class="com.steam.action.parametermanagement.ParameterInfoAction"
+			method="queryParameter">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 添加参数 -->
+		<action name="addParameter" class="com.steam.action.parametermanagement.ParameterInfoAction"
+			method="addParameter">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 删除参数 -->
+		<action name="deleteParameters" class="com.steam.action.parametermanagement.ParameterInfoAction"
+			method="deleteParameters">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 修改参数 -->
+		<action name="updateParameter" class="com.steam.action.parametermanagement.ParameterInfoAction"
+			method="updateParameter">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

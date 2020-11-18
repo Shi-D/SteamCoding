@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="organization" extends="default-package" namespace="/organization">
+	
+		<!-- 机构管理查询机构 -->
+		<action name="searchAllOrganization" class="com.steam.action.organizationmanagement.OrganizationInfoAction"
+			method="searchAllOrganization">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 添加机构 -->
+		<action name="addOrganization" class="com.steam.action.organizationmanagement.OrganizationInfoAction"
+			method="addOrganization">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 删除机构 -->
+		<action name="deleteOrganizationByOrganizationId" class="com.steam.action.organizationmanagement.OrganizationInfoAction"
+			method="deleteOrganizationByOrganizationId">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 修改机构 -->
+		<action name="updateOrganization" class="com.steam.action.organizationmanagement.OrganizationInfoAction"
+			method="updateOrganization">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 获取机构Id与名字 -->
+		<action name="queryOrganization" class="com.steam.action.organizationmanagement.OrganizationInfoAction"
+			method="queryOrganization">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+	</package>
+</struts> 

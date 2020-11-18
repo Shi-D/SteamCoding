@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="work" extends="default-package" namespace="/work">
+		<action name="queryOtherWorks" class="com.steam.action.workmanagement.WorkInfoAction" method="queryOtherWorks">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryMyWorks" class="com.steam.action.workmanagement.WorkInfoAction" method="queryMyWorks">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="uploadSB3File" class="com.steam.action.uploadscratchfile.UploadSB3Action" method="uploadSB3File">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<action name="deleteWork" class="com.steam.action.workmanagement.WorkInfoAction" method="deleteWork">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<action name="publishWork" class="com.steam.action.workmanagement.WorkInfoAction" method="publishWork">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<action name="recommendWork" class="com.steam.action.workmanagement.WorkInfoAction" method="recommendWork">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<action name="recallWork" class="com.steam.action.workmanagement.WorkInfoAction" method="recallWork">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+				<action name="recallPublish" class="com.steam.action.workmanagement.WorkInfoAction" method="recallPublish">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		
+		<action name="getWorkLink" class="com.steam.action.workmanagement.WorkInfoAction" method="getWorkLink">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+
+<struts>
+	<!-- <constant name="struts.devMode" value="true" /> -->
+	<constant name="struts.multipart.maxSize" value="20480000" />
+	<constant name="struts.locale" value="zh_CN" />
+	<constant name="struts.custom.i18n.resources" value="struts.i18n.FormContent,struts.i18n.GlobalMessages" />
+	<constant name="struts.objectFactory" value="spring" />
+	<!-- 设置存放临时文件的文件夹 -->
+	<constant name="struts.multipart.saveDir" value="/tmp" />
+	<package name="default-package" extends="json-default">
+		<interceptors>
+			<interceptor name="systemInterceptor" class="com.framework.common.SystemInterceptor" />
+			<interceptor-stack name="systemStack">
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">error</param>
+				</interceptor-ref>
+				<interceptor-ref name="systemInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="systemStack" />
+
+		<global-results>
+			<result name="exception">/login.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+	</package>
+
+	<!--Web登录验证 -->
+	<package name="loginAction" extends="default-package" namespace="/">
+		<global-results>
+			<result name="accessDenied">/login.jsp</result>
+		</global-results>
+
+		<!-- 捕获AccessDeniedException，并转到相应的页面 -->
+		<global-exception-mappings>
+			<exception-mapping result="accessDenied" exception="org.springframework.security.access.AccessDeniedException" name="accessDenied"></exception-mapping>
+		</global-exception-mappings>
+		
+		<action name="LoginAction_loginSuccess" class="com.framework.authority.action.LoginAction" method="login">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="AccessDenied">
+			<result name="success">/login.jsp</result>
+		</action>
+	
+		<action name="LoginAction_loginFailure" class="com.framework.authority.action.LoginAction" method="loginFailure">
+			<result name="failureMessage" type="json">
+				<param name="root">failureMessage</param>
+			</result>
+		</action>
+
+		<action name="LoginAction_loginOut">
+			<result name="success">/login.jsp</result>
+		</action>
+
+		<action name="j_spring_security_logout">
+			<result name="success">/login.jsp</result>
+		</action>
+		
+	</package>
+
+	<!-- 引入子模块的struts配置文件 样例-->
+	
+	
+		
+	<!-- <include file="energyservice/apistruts/struts-api.xml"></include>-->
+	<include file="framework/authority/struts/struts-user.xml"></include>
+	<include file="steam/struts/struts-classes.xml"></include> 
+	<include file="steam/struts/struts-student.xml"></include> 
+	<include file="steam/struts/struts-course.xml"></include> 
+	<include file="steam/struts/struts-work.xml"></include> 
+	<include file="steam/struts/struts-teacher.xml"></include> 
+	<include file="steam/struts/struts-index.xml"></include> 
+	<include file="steam/struts/struts-homework.xml"></include>
+	<include file="steam/struts/struts-organization.xml"></include>
+	<include file="steam/struts/struts-superAdmin.xml"></include>
+	<include file="steam/struts/struts-parameter.xml"></include>
+</struts>
+

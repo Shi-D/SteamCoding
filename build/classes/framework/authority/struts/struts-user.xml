@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="user" extends="default-package" namespace="/user">
+		<!--获取用户 -->
+		<action name="queryUserInfo" class="com.steam.action.usermanagement.UserInfoAction" method="queryUserInfo">
+			<result name="result>json" type="json">
+				<param name="root">currentUser</param>
+			</result>
+		</action>
+		<!-- 上传用户头像 -->
+		<action name="uploadUserPhoto" class="com.steam.action.usermanagement.UserInfoAction" method="uploadUserPhoto">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<!-- 上传用户信息 -->
+		<action name="updateUserInfo" class="com.steam.action.usermanagement.UserInfoAction" method="updateUserInfo">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 修改当前用户密码-->
+		<action name="updatePassword" class="com.steam.action.usermanagement.UserInfoAction" method="updatePassword">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!--用户注册发送验证码-->
+		<action name="smsPort" class="com.steam.action.usermanagement.UserInfoAction" method="smsPort">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!--用户注册-->
+		<action name="registerUser" class="com.steam.action.usermanagement.UserInfoAction" method="registerUser">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!--更改密码-->
+		<action name="resetPassword" class="com.steam.action.usermanagement.UserInfoAction" method="resetPassword">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!--更改密码发送验证码-->
+		<action name="updatePwdSmsPort" class="com.steam.action.usermanagement.UserInfoAction" method="updatePwdSmsPort">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!--获取默认机构-->
+		<action name="queryDefaultOrganization" class="com.steam.action.usermanagement.UserInfoAction" method="queryDefaultOrganization">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+	</package>
+</struts>

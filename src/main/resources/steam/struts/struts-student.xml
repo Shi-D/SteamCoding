@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="student" extends="default-package" namespace="/student">
+		<action name="queryAllClasses"
+			class="com.steam.action.studentmanagement.StudentInfoAction" method="queryAllClasses">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="addStudent"
+			class="com.steam.action.studentmanagement.StudentInfoAction" method="addStudent">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<action name="deleteStudent"
+			class="com.steam.action.studentmanagement.StudentInfoAction" method="deleteStudent">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<action name="exportExcel"
+			class="com.steam.action.studentmanagement.StudentInfoAction" method="exportExcel">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="downloadTemplate"
+			class="com.steam.action.studentmanagement.StudentInfoAction" method="downloadTemplate">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="studentImport"
+			class="com.steam.action.studentmanagement.StudentInfoAction" method="importExcelForAddStudents">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="resetPWD"
+			class="com.steam.action.studentmanagement.StudentInfoAction" method="resetPWD">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryStudentsByStudentName"
+			class="com.steam.action.studentmanagement.StudentInfoAction" method="queryStudentsByStudentName">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+	</package>
+</struts>

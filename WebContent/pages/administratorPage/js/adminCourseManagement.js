@@ -1,0 +1,366 @@
+let sendMessage = { search: null, pageNo: null, pageSize: null, sorters: null}; //定义发送的数据
+let formData = new FormData();
+let postSrc = _URL+"course/";
+let courseList;
+let searchCourseName = "";
+let videoList;
+init();
+
+
+function init() {
+	$("#table-body").html("");
+	pageNo=1;
+    sendMessage = {search: true, pageNo: pageNo, pageSize: pageSize, sorters: "[{\"property\":\"courseCreateTime\",\"direction\":\"DESC\"}]"};
+    $.post(postSrc+"searchAllInfoCourses.action",sendMessage,function(result){
+        setList(result);
+    });
+}
+
+function setList(result){
+	if (result.length - 1 >= pageSize) {
+    	courseList=result.slice(0,pageSize);
+    }
+    else {
+    	courseList=result.slice(0,result.length-1);
+    }
+    totalPage = result[result.length - 1].totalPage;//设置页面总数
+    totalItem = result[result.length - 1].totalCount;//设置数据总数
+    updateTable();
+    updateFooter();
+    selectChanged();
+}
+
+function setSelectedIndex(){
+	if(selectItemIndex!=-1)
+		$("input[name='items']").eq(selectItemIndex).prop("checked", true);
+}
+
+//更新表格
+function updateTable() {
+	firstIndex=(currentPage-1)*pageSize+1;
+    for (let i = 0, index = firstIndex;i<courseList.length; i++, index++) {
+        let tr = $("<tr></tr>");
+        tr.append($("<td><input type='checkbox' name='items' class='selectAll'></td>"));
+        tr.append($("<td></td>").text(index));
+        tr.append($("<td></td>").text(courseList[i].courseName));
+        if(courseList[i].isPublished)
+        	tr.append($("<td></td>").text("是"));
+        else
+        	tr.append($("<td></td>").text("否"));
+        tr.append($("<td></td>").text(courseList[i].teacherName));
+        if(courseList[i].classSize == null)
+        	tr.append($("<td></td>").text("0"));
+        else
+        	tr.append($("<td></td>").text(courseList[i].classSize));
+        tr.append($("<td></td>").text(courseList[i].courseCreateTime.substring(0,19)));
+        $("#table-body").append(tr);
+    }
+}
+
+/******************修改课程**********************/
+$("#modify-course").click(function () {
+	$("#modifyCourseName").html(getSelectCourseName());
+	$.post(postSrc+"getCourseInfo.action",{courseId:getSelectCourseId()},function (result) {
+        $("#modifyNewCourseName").val(result[0].courseName);
+        $("#modifyNewCourseIntroduction").val(result[0].courseIntroduction);
+        $("#count_modify").html(result[0].courseIntroduction.length);
+        $("#showModifyCover").attr("src",_URL+"account/"+result[0].courseFolderName+result[0].courseCover);
+	});
+});
+
+$("#modifyCourseCommit").click(function () {
+	let formData = new FormData();
+	if($("#modifyNewCourseName").val() == "")
+		$("#modifyNewCourseName").addClass("is-invalid");
+	if(!$("#modifyNewCourseName").hasClass("is-invalid")&&(!$("#modifyNewCourseIntroduction").hasClass("is-invalid"))){
+		formData.append("courseId",getSelectCourseId());
+		formData.append("courseName",$("#modifyNewCourseName").val());
+		formData.append("courseIntroduction",$("#modifyNewCourseIntroduction").val());
+		if($("#uploadModifyCover")[0].files[0])
+			formData.append("uploadFile",$("#uploadModifyCover")[0].files[0]);
+		$.ajax({
+		    url : postSrc+'updateCourseInfo.action',
+		    type : 'POST',
+		    async : false,
+		    data : formData,
+		    processData : false,
+		    contentType : false,
+		    success:function (result) {
+		    	if(result[0].result == "修改成功"){
+		    		alert(result[0].result);
+		    		$("#modifyCourseCancel").click();
+		    	}else
+		    		alert("修改失败");
+		    	getInfoCopy();
+		    }
+		});
+	}
+});
+
+$("#modifyCourseCancel").click(function(){
+	 $("#modifyNewCourseName").val("");
+	 $("#modifyNewCourseName").removeClass("is-valid");
+	 $("#modifyNewCourseName").removeClass("is-invalid");
+     $("#modifyNewCourseIntroduction").val("");
+     $("#modifyNewCourseIntroduction").removeClass("is-valid");
+     $("#modifyNewCourseIntroduction").removeClass("is-invalid");
+     $("#count_modify").html("0");
+     $("#uploadModifyCover").val("");
+     $("#showModifyCover").attr("src","/SteamCoding/resources/img/setCover.png");
+});
+
+
+/******************添加课程**********************/
+$("#createCourseCommit").click(function(){
+	if($("#createNewCourseName").val() == "")
+		$("#createNewCourseName").addClass("is-invalid");
+	if($("#createNewCourseName").hasClass("is-valid")&&(!$("#createNewCourseIntroduction").hasClass("is-invalid"))){
+		let formData = new FormData();
+		formData.append("courseName",$("#createNewCourseName").val());
+	    formData.append("courseIntroduction",$("#createNewCourseIntroduction").val());
+	    if($("#uploadNewCover")[0].files[0])
+			formData.append("uploadFile",$("#uploadNewCover")[0].files[0]);
+		
+	    $.ajax({
+	        url : postSrc+'uploadCourse.action',
+	        type : 'POST',
+	        async : false,
+	        data : formData,
+	        processData : false,
+	        contentType : false,
+	        success:function (result) {
+	        	if(result[0].result == "添加成功"){
+	        		alert("添加成功");
+	        		$("#createCourseCancel").click();
+	        	}else
+	        		alert("添加失败");
+	        	init();
+	        }
+	    });
+	}
+});
+
+//重置表单
+$("#createCourseCancel").click(function(){
+	 $("#createNewCourseName").val("");
+	 $("#createNewCourseName").removeClass("is-valid");
+	 $("#createNewCourseName").removeClass("is-invalid");
+     $("#createNewCourseIntroduction").val("");
+     $("#createNewCourseIntroduction").removeClass("is-valid");
+     $("#createNewCourseIntroduction").removeClass("is-invalid");
+     $("#count_create").html("0");
+     $("#uploadNewCover").val("");
+     $("#showNewCover").attr("src","/SteamCoding/resources/img/setCover.png");
+});
+
+
+function changepic(obj,id) {
+    var newsrc=getObjectURL(obj.files[0]);
+    document.getElementById(id).src=newsrc;
+}
+//建立一個可存取到該file的url 
+function getObjectURL(file) {
+    var url = null ;
+    // 下面函数执行的效果是一样的，只是需要针对不同的浏览器执行不同的 js 函数而已
+    if (window.createObjectURL!=undefined) { // basic
+        url = window.createObjectURL(file) ;
+    } else if (window.URL!=undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file) ;
+    } else if (window.webkitURL!=undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file) ;
+    }
+    return url ;
+}
+
+/******************删除课程**********************/
+$("#delete-course").click(function () {
+    $("#deleteCourse_courseName").html(getSelectCourseName());
+});
+$("#deleteCourseCommit").click(function () {
+	let courseId=getSelectCourseId();
+    $.post(postSrc+"deleteCourse.action",{courseIds:courseId},function(result){
+        init();
+    });
+});
+function getCourses(){
+    $.post(postSrc+"searchAllInfoCourses.action",function (result) {
+        console.log(result);
+    })
+}
+
+/******************设为精品课程**********************/
+$("#boutique-course").click(function(){
+	$("#boutique-course-content").html(getSelectCourseName());
+});
+$("#boutique-course-commit").click(function(){
+	let courseIds=getSelectCourseId();
+    $.post(postSrc+"publishCourse.action",{courseIds:courseIds},function(result){
+        init();
+    });
+});
+
+/******************取消精品课程**********************/
+$("#cancel-boutique-course").click(function(){
+	$("#cancel-boutique-course-content").html(getSelectCourseName());
+});
+$("#cancel-boutique-course-commit").click(function(){
+	let courseIds=getSelectCourseId();
+    $.post(postSrc+"recallCourse.action",{courseIds:courseIds},function(result){
+        init();
+    });
+});
+
+/******************更新章节内容**********************/
+$("#update-course").click(function(){
+	window.open("../../teacherPage/html/addChapter.jsp?courseId="+getSelectCourseId()+"&courseName="+getSelectCourseName());
+});
+
+/******************查看视频库**********************/
+$("#video-lib").click(function(){
+	getVideoList();
+});
+
+function getVideoList(){
+	$.post(postSrc+"queryAllVideo.action",function(result){
+		$("#video-lib-list").html("");
+		videoList = result[0].message;
+		if(videoList.length == 0){
+			$("#video-play").attr('src', "");
+			$("#deleteVideoCommit").attr("disabled","disabled");
+		}
+		else
+			$("#deleteVideoCommit").removeAttr("disabled");
+		for(i = 0;i < videoList.length;i++){
+			if(i == 0){
+				$("#video-lib-list").append("<li class='list-group-item active' id='"+videoList[i].videoId+"' value='"+videoList[i].videoLink+"'>"+videoList[i].videoName+"("+videoList[i].userName+")</li>");
+				$("#video-play").attr('src', _URL + videoList[i].videoLink);
+			}
+			else{
+				$("#video-lib-list").append("<li class='list-group-item' id='"+videoList[i].videoId+"' value='"+videoList[i].videoLink+"'>"+videoList[i].videoName+"("+videoList[i].userName+")</li>");
+			}
+		}
+	});
+}
+
+$(document).on("click","#video-lib-list li",function(){
+	videoIds = $(this)[0].attributes.id.nodeValue;
+	$(this).siblings('li').removeClass('active');  // 删除其兄弟元素的样式
+	$(this).addClass('active');                    // 为点击元素添加类名
+	$("#video-play").attr('src', _URL + $(this)[0].attributes.value.nodeValue);
+});
+
+$("#deleteVideoCommit").click(function(){
+	let videoIds = videoList[$("#video-lib-list .active").index()].videoId;
+	$.post(postSrc+"deleteVideo.action",{"videoIds":videoIds},function(result){
+		if(result[0].result){
+			getVideoList();
+		}
+		else{
+			alert("视频删除失败，请联系维护人员");
+		}
+	});
+});
+
+//获取选中的课程ID
+function getSelectCourseId(){
+    let courseIds="";
+    let items = document.getElementById("table-context-body").getElementsByTagName("input");
+    for(let i=0; i<items.length; ++i){
+        //添加选中的课程
+        if(items[i].checked===true){
+        	selectItemIndex=i;
+            courseIds += courseList[i].courseId+",";
+        }
+    }
+    return courseIds.substring(0,courseIds.length-1);
+}
+
+//获取当前页的内容(适用于分页查询)
+function getInfo(){
+	$("#table-body").html("");
+	sendMessage = {courseName:searchCourseName,search: true, pageNo: pageNo, pageSize: pageSize, sorters: "[{\"property\":\"courseCreateTime\",\"direction\":\"DESC\"}]"};
+    $.post(postSrc+"queryAllInfoCoursesByCourseName.action",sendMessage,function(result){
+        setList(result);
+    });
+}
+
+//获取当前页面的内容（不适用于分页）
+function getInfoCopy(){
+	$("#table-body").html("");
+	sendMessage = {courseName:searchCourseName,search: true, pageNo: pageNo, pageSize: pageSize, sorters: "[{\"property\":\"courseCreateTime\",\"direction\":\"DESC\"}]"};
+    $.post(postSrc+"queryAllInfoCoursesByCourseName.action",sendMessage,function(result){
+        if (result.length - 1 >= pageSize) {
+        	courseList=result.slice(0,pageSize);
+        }
+        else {
+        	courseList=result.slice(0,result.length-1);
+        }
+        updateTable();
+        updateFooter();
+        setSelectedIndex();//多了此处，还原选中的课程
+        selectChanged();
+    });
+}
+
+//获取选中的课程名称
+function getSelectCourseName(){
+    let courseNames="";
+    let items = document.getElementById("table-context-body").getElementsByTagName("input");
+    for(let i=0;i<items.length;++i){
+        //添加选中的课程
+        if(items[i].checked===true){
+            courseNames +=courseList[i].courseName+",";
+        }
+    }
+    return courseNames.substring(0,courseNames.length-1);
+}
+//查询课程
+$("#query").click(function (e) {
+	searchCourseName=$("#titleSearch").val();
+	pageNo=1;//重置当前页
+    pageSize = 20; //页面数据条数
+    currentPage=1;//重置当前页数
+	$("#table-body").html("");
+    sendMessage = {courseName:searchCourseName, search: true, pageNo: pageNo, pageSize: pageSize,  sorters: "[{\"property\":\"courseCreateTime\",\"direction\":\"DESC\"}]"};
+    $.post(postSrc+"queryAllInfoCoursesByCourseName.action",sendMessage,function(result){
+    	console.log(result);
+    	setList(result);
+    });
+});
+
+function selectChanged(){
+	//判断check_item被选中的个数
+    selectNum = $(".selectAll:checked").length;
+    let statue =document.getElementById("CheckAll")//控制全选的复选框不纳入selectNum
+    if(statue.checked)
+        selectNum-=1;
+    if(selectNum===0){
+        $("#delete-course").attr("disabled", true).addClass("disabled");
+        $("#update-course").attr("disabled", true).addClass("disabled");
+        $("#modify-course").attr("disabled", true).addClass("disabled");
+        $("#boutique-course").attr("disabled", true).addClass("disabled");
+        $("#cancel-boutique-course").attr("disabled", true).addClass("disabled");
+    }
+    else if(selectNum===1){
+        $("#delete-course").removeAttr("disabled").removeClass("disabled");
+        $("#update-course").removeAttr("disabled").removeClass("disabled");
+        $("#modify-course").removeAttr("disabled").removeClass("disabled");
+        $("#boutique-course").removeAttr("disabled").removeClass("disabled");
+        $("#cancel-boutique-course").removeAttr("disabled").removeClass("disabled");
+    }
+    else{
+        $("#delete-course").removeAttr("disabled").removeClass("disabled");
+        $("#update-course").attr("disabled", true).addClass("disabled");
+        $("#modify-course").attr("disabled", true).addClass("disabled");
+        $("#boutique-course").removeAttr("disabled").removeClass("disabled");
+        $("#cancel-boutique-course").removeAttr("disabled").removeClass("disabled");
+    }
+}
+
+$("#createNewCourseIntroduction").bind('input propertychange',function(){
+    $("#count_create").html($(this).val().length);
+});
+
+$("#modifyNewCourseIntroduction").bind('input propertychange',function(){
+    $("#count_modify").html($(this).val().length);
+});

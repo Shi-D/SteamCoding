@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="superAdmin" extends="default-package" namespace="/superAdmin">
+	
+		<!-- 查询管理员 -->
+		<action name="queryAdminByAdminName" class="com.steam.action.adminmanagement.AdminInfoAction"
+			method="queryAdminByAdminName">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 添加管理员 -->
+		<action name="addAdminToOrganization" class="com.steam.action.adminmanagement.AdminInfoAction"
+			method="addAdminToOrganization">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 删除管理员 -->
+		<action name="deleteAdmin" class="com.steam.action.adminmanagement.AdminInfoAction"
+			method="deleteAdmin">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 修改管理员 -->
+		<action name="updateAdmin" class="com.steam.action.adminmanagement.AdminInfoAction"
+			method="updateAdmin">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 查询老师 -->
+		<action name="queryTeachersByTeacherName" class="com.steam.action.adminmanagement.AdminInfoAction"
+			method="queryTeachersByTeacherName">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 查询学生 -->
+		<action name="queryStudentsByStudentName" class="com.steam.action.adminmanagement.AdminInfoAction"
+			method="queryStudentsByStudentName">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<!-- 重置密码 -->
+		<action name="resetPWD" class="com.steam.action.adminmanagement.AdminInfoAction"
+			method="resetPWD">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+	</package>
+</struts> 

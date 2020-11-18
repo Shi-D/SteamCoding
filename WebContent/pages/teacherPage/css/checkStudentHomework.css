@@ -1,0 +1,25 @@
+#homeworkEvaluation{
+    width: 100%;
+    height: 120px;
+}
+
+.starColor{
+    font-size: 20px;
+    color: red;
+}
+
+#homeworkScore{
+	width:30%
+}
+
+#previousEvaluation{
+	word-wrap: break-word;
+	word-break: break-all;
+	overflow: hidden;
+}
+
+#previousScore{
+	font-size:40px;
+	font-weight: bold;
+	color:red;
+}

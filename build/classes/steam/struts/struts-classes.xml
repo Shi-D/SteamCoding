@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<package name="classes" extends="default-package" namespace="/classes">
+
+		<!-- 班级管理 -->
+		<action name="queryAllInfoClassesByClassName"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="queryAllInfoClassesByClassName">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		<action name="addClass"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="addClass">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<!-- 删除班级 -->
+		<action name="deleteClassesByClassIds"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="deleteClassesByClassIds">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+
+		<!-- 学生管理 -->
+		<action name="queryStudentNotInClass"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="queryStudentNotInClass">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryStudentInClass"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="queryStudentInClass">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="deleteStudentInClass"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="deleteStudentInClass">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="addStudentsToClass"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="addStudentsToClass">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryCourseNotInClass"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="queryCourseNotInClass">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<action name="queryCourseInClass"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="queryCourseInClass">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryCoursesByClassId"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="queryCoursesByClassId">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+
+
+		<!-- 课程管理 -->
+		<action name="addCoursesToClass"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="addCoursesToClass">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="searchAllInfoClasses"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="searchAllInfoClasses">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryCoursesByClassName"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="queryCoursesByClassName">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<action name="queryChapterInCourse"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="queryChapterInCourse">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+		
+		<action name="updateChapterSchedule"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="updateChapterSchedule">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+
+		<!-- 移除课程 -->
+		<action name="deleteCoursesInClass"
+			class="com.steam.action.classesmanagement.ClassesInfoAction" method="deleteCoursesInClass">
+			<result name="result>json" type="json">
+				<param name="root">results</param>
+			</result>
+		</action>
+	</package>
+</struts> 

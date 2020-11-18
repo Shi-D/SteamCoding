@@ -1,0 +1,82 @@
+#work-context ul {
+    margin: 2%;
+    padding: unset;
+}
+
+.homeWorkCardStyle {
+    display: inline-block;
+    width: calc(100%/3 - 20px/5);
+    height: 250px;
+    list-style: none;
+    text-align: center;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+.homeWorkCardStyle div.cardContent {
+    height: 240px;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    min-width: 300px;
+    max-width: 380px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.homeWorkCardStyle div p {
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-size: 18px;
+    text-align: left;
+    padding-left: 8%;
+    font-weight: bold;
+}
+
+.homeWorkCardStyle div span {
+    display: block;
+    color: #424242;
+    font-size: 17px;
+    text-align: left;
+    padding-left: 8%;
+    margin-bottom: 3px;
+}
+
+.homeWorkCardStyle div .homeworkDetail{
+    background-color: #e8eeda;
+    height: 27%;
+    position:relative;
+}
+
+.homeworkDetail label{
+    font-size: 30px;
+    color: red;
+    width:120px;
+    height:75%;
+    margin:auto;
+    position: absolute;
+    top:0;
+    left: 5%;
+    bottom:0;
+}
+
+.homeworkDetail a{
+    color: white;
+    background-color: green;
+    border: 2px solid green;
+    border-radius: 5px;
+    width:70px;
+    height:50%;
+    margin:auto;
+    position: absolute;
+    top:0;
+    right: 5%;
+    bottom:0; 
+}
+
+.table-context{
+    /*margin-top: 2%;*/
+    min-width: 64rem;
+    width: 100%;
+}

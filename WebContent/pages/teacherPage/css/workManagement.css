@@ -1,0 +1,102 @@
+.left-label{
+    font-size:20px;
+    text-align: left;
+}
+
+.right-label{
+    font-size:20px;
+    text-align: right;
+}
+
+.edit-work-btn{
+    text-align: center;
+}
+
+.delete-work-btn{
+    text-align: center;
+}
+
+.publish-work-btn{
+    text-align: center;
+}
+
+.work-row{
+    margin-top: 15px;
+    /*margin-top: 2%;*/
+    min-width: 66rem;
+    width: 100%;
+}
+
+.work-col{
+    /*margin-bottom: 2%;*/
+    margin-bottom: 15px;
+}
+
+.card-style{
+    min-width: 193px;
+    max-width: 235px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.hideEditAndDelete{
+    display: none;
+}
+
+.date-input{
+    width: 33%;
+    font-size: 14px;
+    min-width: 8rem;
+}
+
+.col-xs-1-5,
+.col-sm-1-5,
+.col-md-1-5,
+.col-lg-1-5 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-1-5 {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-1-5 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-1-5 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-1-5 {
+        width: 20%;
+        float: left;
+    }
+}
+
+.btnStyle{
+	width:100%;
+}
+
+.titleStyle{
+	verflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.setPointer{
+	cursor: pointer
+}
+#star{
+	color:red;
+}
+
