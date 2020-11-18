@@ -1,7 +1,7 @@
 # SteamCoding
 This project has been officially launched.(http://www.steamstudying.com/)
 
-**Author: Yd Shi (Hangzhou Normal University)**
+**Author: Yd Shi**
 
 Prerequisites:
 ---------------
