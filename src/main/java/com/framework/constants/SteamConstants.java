@@ -10,9 +10,9 @@ public class SteamConstants {
 	/**172.Absolute url without user account*/
 	//public static final String ABSOLUTE_URL_WITHOUT_ACCOUNT = "D:/SteamCodingUpload/";
 	/**Absolute url*/
-	public static final String ABSOLUTE_URL_WITHOUT_ACCOUNT = "/Users/shiyingdan/SteamCodingUpload/";
+	public static final String ABSOLUTE_URL_WITHOUT_ACCOUNT = "/Users/xxx/SteamCodingUpload/";
 	/**Absolute url without user account*/
-    public static final String ABSOLUTE_URL = "/Users/shiyingdan/SteamCodingUpload/account/";
+    public static final String ABSOLUTE_URL = "/Users/xxx/SteamCodingUpload/account/";
 	/**Student role ID*/
 	public static final Integer ROLE_STUDENT = 3;
 	/**Teacher role ID*/
